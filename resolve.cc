@@ -98,6 +98,14 @@ int resolve_send(const void *buffer, size_t len, ConnectionlessProbe &probe, con
 }
 
 int resolve(const char *hostname, const char *port, int socktype, int protocol, ResolveAction &action) {
+	bool actual_mptcp = false;
+	if (protocol == IPPROTO_MPTCP) {
+		/* glibc's getaddrinfo(3)  doesn't deal with mptcp properly (https://sourceware.org/bugzilla/show_bug.cgi?id=29609)
+		 * so instead we lie and say it's tcp, then patch it up later.
+		 */
+		actual_mptcp = true;
+		protocol = IPPROTO_TCP;
+	}
 	addrinfo hints;
 	memset(&hints, 0, sizeof(hints));
 	hints = (addrinfo) {
@@ -124,6 +132,9 @@ int resolve(const char *hostname, const char *port, int socktype, int protocol, 
 	}
 
 	for(addrinfo *it = res; it != nullptr; it = it->ai_next) {
+		if (actual_mptcp)
+			/* patch MPTCP again. */
+			it->ai_protocol = IPPROTO_MPTCP;
 		ret = action.apply(*it);
 		if (ret >= 0)
 			return ret;
