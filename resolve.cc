@@ -47,7 +47,7 @@ int BindAction::apply(addrinfo &ai) {
 		std::cerr << "SO_REUSEADDR: " << strerror(errno) << std::endl;
 	}
 
-	if (bind(fd, ai.ai_addr, ai.ai_addrlen) == -1) {
+	if (::bind(fd, ai.ai_addr, ai.ai_addrlen) == -1) {
 		std::cerr << "bind: " << strerror(errno) << std::endl;
 		return -1;
 	}
