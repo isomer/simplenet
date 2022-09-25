@@ -27,6 +27,7 @@
 #include <string>
 #include <string.h>
 #include <iostream>
+#include "defs.hh"
 
 
 std::unique_ptr<Listener> MpTcpProber::listen(int argc, char *argv[]) {

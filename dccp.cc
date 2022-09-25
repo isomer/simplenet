@@ -26,15 +26,7 @@
 #include <string>
 #include <string.h>
 #include <iostream>
-
-/* For platforms that don't define it. */
-#ifndef SOCK_DCCP
-#define SOCK_DCCP 6
-#endif
-
-#ifndef IPPROTO_DCCP
-#define IPPROTO_DCCP 33
-#endif
+#include "defs.hh"
 
 std::unique_ptr<Listener> DccpProber::listen(int argc, char *argv[]) {
 	if (argc != 2) {

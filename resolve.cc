@@ -23,14 +23,11 @@
 #include <iostream>
 #include <string.h>
 #include <unistd.h>
+#include "defs.hh"
 
 using namespace std;
 
 /* For systems that don't yet have MPTCP constants */
-#ifndef IPPROTO_MPTCP
-#define IPPROTO_MPTCP 252
-#endif
-
 class BindAction : public ResolveAction {
 public:
 	int apply(addrinfo &ai);
