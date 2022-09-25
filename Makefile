@@ -1,4 +1,4 @@
-CXXFLAGS=-Og -g -Wall -Wextra -fPIC
+CXXFLAGS=-Og -g -Wall -Wextra -fPIC -std=gnu++17
 
 all: simplenet
 
