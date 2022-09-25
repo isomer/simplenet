@@ -55,7 +55,7 @@ int BindAction::apply(addrinfo &ai) {
 }
 
 int resolve_socket_bind(const char *hostname, const char *port, int socktype, int protocol) {
-	BindAction action{};
+	BindAction action;
 	return resolve(hostname, port, socktype, protocol, action);
 }
 
@@ -78,7 +78,7 @@ int ConnectAction::apply(addrinfo &ai) {
 }
 
 int resolve_socket_connect(char const *hostname, char const *port, int socktype, int protocol) {
-	ConnectAction action{};
+	ConnectAction action;
 	return resolve(hostname, port, socktype, protocol, action);
 }
 
