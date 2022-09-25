@@ -32,6 +32,10 @@
 #define SOCK_DCCP 6
 #endif
 
+#ifndef IPPROTO_DCCP
+#define IPPROTO_DCCP 33
+#endif
+
 std::unique_ptr<Listener> DccpProber::listen(int argc, char *argv[]) {
 	if (argc != 2) {
 		std::cerr << name() << " listen <ip> <port>" << std::endl;
