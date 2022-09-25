@@ -27,6 +27,11 @@
 #include <string.h>
 #include <iostream>
 
+/* For platforms that don't define it. */
+#ifndef SOCK_DCCP
+#define SOCK_DCCP 6
+#endif
+
 std::unique_ptr<Listener> DccpProber::listen(int argc, char *argv[]) {
 	if (argc != 2) {
 		std::cerr << name() << " listen <ip> <port>" << std::endl;
